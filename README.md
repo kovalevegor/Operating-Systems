@@ -7,21 +7,25 @@
 ```cpp
 #include <iostream>
 
-int sumArray(int* array, int size) {
-    int sum = 0;
-    for (int i = 0; i < size; ++i) {
-        sum += array[i];
+int factorial(int n) {
+    if (n == 0 || n == 1) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
     }
-    return sum;
 }
 
 int main() {
-    int array[] = {1, 2, 3, 4, 5};
-    int size = sizeof(array) / sizeof(array[0]);
-    int result = sumArray(array, size);
-    std::cout << "Sum: " << result << std::endl;
+    int number;
+    std::cout << "Enter a number: ";
+    std::cin >> number;
+
+    int result = factorial(number);
+    std::cout << "The factorial of " << number << " is: " << result << std::endl;
+
     return 0;
 }
+
 ```
 После сохранения кода в файл с расширением `.cpp` (например, `example.cpp`), можно использовать `gcc` для трансляции его в ассемблерный код с разными опциями оптимизации.
 
