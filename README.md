@@ -160,7 +160,7 @@ LC2:
 ```
 + Функция `___main` - точка входа в программу.
 +` ___main` и `LC0`, `LC1`, `LC2` - метки и строки, используемые в программе.
-```assembley
+```assembly
 	.globl	_main
 	.def	_main;	.scl	2;	.type	32;	.endef
 _main:
