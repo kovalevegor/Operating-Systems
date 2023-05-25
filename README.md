@@ -147,9 +147,89 @@ LFE1489:
 + `addl $24, %esp` - освобождение выделенного места на стеке.
 + `popl %ebx` - восстановление значения регистра `ebx`.
 + `ret` - возврат из процедуры.
+```assembly
+	.def	___main;	.scl	2;	.type	32;	.endef
+	.section .rdata,"dr"
+LC0:
+	.ascii "Enter a number: \0"
+LC1:
+	.ascii "The factorial of \0"
+LC2:
+	.ascii " is: \0"
+	.text
+```
++ Функция `___main` - точка входа в программу.
++` ___main` и `LC0`, `LC1`, `LC2` - метки и строки, используемые в программе.
+```assembley
+	.globl	_main
+	.def	_main;	.scl	2;	.type	32;	.endef
+_main:
+LFB1490:
+	.cfi_startproc
+	leal	4(%esp), %ecx
+	.cfi_def_cfa 1, 0
+	andl	$-16, %esp
+	pushl	-4(%ecx)
+	pushl	%ebp
+	.cfi_escape 0x10,0x5,0x2,0x75,0
+	movl	%esp, %ebp
+	pushl	%esi
+	pushl	%ebx
+	pushl	%ecx
+	.cfi_escape 0xf,0x3,0x75,0x74,0x6
+	.cfi_escape 0x10,0x6,0x2,0x75,0x7c
+	.cfi_escape 0x10,0x3,0x2,0x75,0x78
+	subl	$44, %esp
+	call	___main
+	movl	$LC0, 4(%esp)
+	movl	$__ZSt4cout, (%esp)
+	call	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	leal	-28(%ebp), %eax
+	movl	%eax, (%esp)
+	movl	$__ZSt3cin, %ecx
+	call	__ZNSirsERi
+	subl	$4, %esp
+	movl	-28(%ebp), %ebx
+	movl	%ebx, (%esp)
+	call	__Z9factoriali
+	movl	%eax, %esi
+	movl	$17, 8(%esp)
+	movl	$LC1, 4(%esp)
+	movl	$__ZSt4cout, (%esp)
+	call	__ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_i
+	movl	%ebx, (%esp)
+	movl	$__ZSt4cout, %ecx
+	call	__ZNSolsEi
+	subl	$4, %esp
+	movl	%eax, %ebx
+	movl	$5, 8(%esp)
+	movl	$LC2, 4(%esp)
+	movl	%eax, (%esp)
+	call	__ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_i
+	movl	%esi, (%esp)
+	movl	%ebx, %ecx
+	call	__ZNSolsEi
+	subl	$4, %esp
+	movl	%eax, (%esp)
+	call	__ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+	movl	$0, %eax
+	leal	-12(%ebp), %esp
+	popl	%ecx
+	.cfi_restore 1
+	.cfi_def_cfa 1, 0
+	popl	%ebx
+	.cfi_restore 3
+	popl	%esi
+	.cfi_restore 6
+	popl	%ebp
+	.cfi_restore 5
+	leal	-4(%ecx), %esp
+	.cfi_def_cfa 4, 4
+	ret
+	.cfi_endproc
+LFE1490:
 
-
-
+```
 
 
 
