@@ -75,16 +75,18 @@ int main() {
 ```
 Выполним для нее следующую команду для трансляции: `gcc -S -o example_O1.s fractional.cpp -O1` и получим файл `example_01.s` со следующим содержимым:
 
-```assembley
-	.file	"fractional.cpp"    # Указание имени исходного файла
-	.text   # Начало секции кода
+```assembly
+	.file	"fractional.cpp"
+	.text
+```
+`fractional.cpp` - исходный файл программы.
+```assembly
 	.def	___tcf_0;	.scl	3;	.type	32;	.endef
-___tcf_0:   #  Определение функции ___tcf_0
-LFB1923:    #  Метка LFB1923, начало процедуры
+___tcf_0:
+LFB1923:
 	.cfi_startproc
-	subl	$12, %esp   #  Выделение памяти в стеке
-	.cfi_def_cfa_offset 16  #  Установка значения смещения указателя стека
-    #  Вызов функции __ZNSt8ios_base4InitD1Ev
+	subl	$12, %esp
+	.cfi_def_cfa_offset 16
 	movl	$__ZStL8__ioinit, %ecx
 	call	__ZNSt8ios_base4InitD1Ev
 	addl	$12, %esp
@@ -92,6 +94,15 @@ LFB1923:    #  Метка LFB1923, начало процедуры
 	ret
 	.cfi_endproc
 LFE1923:
+```
++ Функция `___tcf_0` - деструктор инициализации стандартного потока ввода/вывода.
++ `LFB1923` и `LFE1923` - метки начала и конца процедуры.
++ `subl $12, %esp` - выделение места на стеке для локальных переменных.
++ `movl $__ZStL8__ioinit, %ecx` - загрузка адреса инициализации потока ввода/вывода в регистр ecx.
++ `call __ZNSt8ios_base4InitD1Ev` - вызов деструктора инициализации потока ввода/вывода.
++ `addl $12, %esp` - освобождение выделенного места на стеке.
++ `ret` - возврат из процедуры.
+```assembly
 	.globl	__Z9factoriali
 	.def	__Z9factoriali;	.scl	2;	.type	32;	.endef
 __Z9factoriali:
@@ -119,116 +130,23 @@ L3:
 	ret
 	.cfi_endproc
 LFE1489:
-	.def	___main;	.scl	2;	.type	32;	.endef
-	.section .rdata,"dr"
-LC0:
-	.ascii "Enter a number: \0"
-LC1:
-	.ascii "The factorial of \0"
-LC2:
-	.ascii " is: \0"
-	.text
-	.globl	_main
-	.def	_main;	.scl	2;	.type	32;	.endef
-_main:
-LFB1490:
-	.cfi_startproc
-	leal	4(%esp), %ecx
-	.cfi_def_cfa 1, 0
-	andl	$-16, %esp
-	pushl	-4(%ecx)
-	pushl	%ebp
-	.cfi_escape 0x10,0x5,0x2,0x75,0
-	movl	%esp, %ebp
-	pushl	%esi
-	pushl	%ebx
-	pushl	%ecx
-	.cfi_escape 0xf,0x3,0x75,0x74,0x6
-	.cfi_escape 0x10,0x6,0x2,0x75,0x7c
-	.cfi_escape 0x10,0x3,0x2,0x75,0x78
-	subl	$44, %esp
-	call	___main
-	movl	$LC0, 4(%esp)
-	movl	$__ZSt4cout, (%esp)
-	call	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
-	leal	-28(%ebp), %eax
-	movl	%eax, (%esp)
-	movl	$__ZSt3cin, %ecx
-	call	__ZNSirsERi
-	subl	$4, %esp
-	movl	-28(%ebp), %ebx
-	movl	%ebx, (%esp)
-	call	__Z9factoriali
-	movl	%eax, %esi
-	movl	$17, 8(%esp)
-	movl	$LC1, 4(%esp)
-	movl	$__ZSt4cout, (%esp)
-	call	__ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_i
-	movl	%ebx, (%esp)
-	movl	$__ZSt4cout, %ecx
-	call	__ZNSolsEi
-	subl	$4, %esp
-	movl	%eax, %ebx
-	movl	$5, 8(%esp)
-	movl	$LC2, 4(%esp)
-	movl	%eax, (%esp)
-	call	__ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_i
-	movl	%esi, (%esp)
-	movl	%ebx, %ecx
-	call	__ZNSolsEi
-	subl	$4, %esp
-	movl	%eax, (%esp)
-	call	__ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
-	movl	$0, %eax
-	leal	-12(%ebp), %esp
-	popl	%ecx
-	.cfi_restore 1
-	.cfi_def_cfa 1, 0
-	popl	%ebx
-	.cfi_restore 3
-	popl	%esi
-	.cfi_restore 6
-	popl	%ebp
-	.cfi_restore 5
-	leal	-4(%ecx), %esp
-	.cfi_def_cfa 4, 4
-	ret
-	.cfi_endproc
-LFE1490:
-	.def	__GLOBAL__sub_I__Z9factoriali;	.scl	3;	.type	32;	.endef
-__GLOBAL__sub_I__Z9factoriali:
-LFB1924:
-	.cfi_startproc
-	subl	$28, %esp
-	.cfi_def_cfa_offset 32
-	movl	$__ZStL8__ioinit, %ecx
-	call	__ZNSt8ios_base4InitC1Ev
-	movl	$___tcf_0, (%esp)
-	call	_atexit
-	addl	$28, %esp
-	.cfi_def_cfa_offset 4
-	ret
-	.cfi_endproc
-LFE1924:
-	.section	.ctors,"w"
-	.align 4
-	.long	__GLOBAL__sub_I__Z9factoriali
-.lcomm __ZStL8__ioinit,1,1
-	.ident	"GCC: (MinGW.org GCC-6.3.0-1) 6.3.0"
-	.def	__ZNSt8ios_base4InitD1Ev;	.scl	2;	.type	32;	.endef
-	.def	__ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc;	.scl	2;	.type	32;	.endef
-	.def	__ZNSirsERi;	.scl	2;	.type	32;	.endef
-	.def	__ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_i;	.scl	2;	.type	32;	.endef
-	.def	__ZNSolsEi;	.scl	2;	.type	32;	.endef
-	.def	__ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_;	.scl	2;	.type	32;	.endef
-	.def	__ZNSt8ios_base4InitC1Ev;	.scl	2;	.type	32;	.endef
-	.def	_atexit;	.scl	2;	.type	32;	.endef
 ```
-
-
-
-
-
++ Функция `__Z9factoriali` - рекурсивная функция вычисления факториала числа.
++ `LFB1489` и `LFE1489` - метки начала и конца процедуры.
++ `pushl %ebx` - сохранение значения регистра ebx на стеке.
++ `subl $24, %esp` - выделение места на стеке для локальных переменных.
++ `movl 32(%esp), %ebx` - загрузка значения параметра функции в регистр `ebx`.
++ `movl $1, %eax` - загрузка значения 1 в регистр eax.
++ `cmpl $1, %ebx` - сравнение значения в `ebx` с 1.
++ `jbe L3` - переход к метке `L3`, если значение в `ebx` меньше или равно 1.
++ `leal -1(%ebx), %eax` - вычисление значения `(ebx - 1)` и сохранение результата в `eax`.
++ `movl %eax, (%esp)` - сохранение значения `eax` на стеке.
++ `call __Z9factoriali` - рекурсивный вызов функции `__Z9factoriali`.
++ `imull %ebx, %eax` - умножение значения `eax` на значение `ebx` и сохранение результата в eax.
++ `L3`: - метка `L3` для перехода.
++ `addl $24, %esp` - освобождение выделенного места на стеке.
++ `popl %ebx` - восстановление значения регистра `ebx`.
++ `ret` - возврат из процедуры.
 
 
 
