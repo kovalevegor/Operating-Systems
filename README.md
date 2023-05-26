@@ -54,3 +54,52 @@
 + После завершения установки операционной системы, виртуальная машина будет готова к использованию.
 
 Тепер есть виртуальная Linux x86_64-машина с винчестером, CD-приводом и сетевой картой в режиме bridge. Можно настроить и запустить нужное вам программное обеспечение на этой виртуальной машине.
+
+**General**
+
++ Name:                 `Linux VM`
++ Operating System:     `Ubuntu (64-bit)`
+
+**System**
+
++ Base Memory:          `8192 MB`
++ Processors:           `4`
++ Boot Order:           `Floopy, Optical, Hard Disk`
++ Acceleration:         `Nested Panging, KVM Paravirtualization`
+
+**Storage**
+
++ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
