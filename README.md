@@ -1,4 +1,4 @@
-# <p aligh="center" Operating-Systems | Лабораторная 3a | Реализация скрипта bash</p>
+# <p aligh="center"> Operating-Systems | Лабораторная 3a | Реализация скрипта bash</p>
 
 В установленной виртуальной машине реализовать задачу из методички, опубликованной [здесь](https://github.com/eugeneai/bash-essentials-ru-handbok/raw/master/bash-ru.pdf)
 
@@ -6,13 +6,13 @@
 
 ---
 
-## <p aligh="center" Постановка задачи</p>
+## <p aligh="center"> Постановка задачи</p>
 <br>
 Преобразовать все файлы формата `.jpg` в формат `JPEG2000` при помощи программы `convert` пакета `ImageMagic`
 
 ---
 
-## <p aligh="center" Алгоритм выполнения</p>
+## <p aligh="center"> Алгоритм выполнения</p>
 <br>
 Прежде чем запустить скрипт, установим пакет ImageMagick:
 
