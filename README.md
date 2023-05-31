@@ -1,5 +1,5 @@
 # <p align="center"> Operating-Systems | Лабораторная 3a | Реализация скрипта bash</p>
-
+<br>
 В установленной виртуальной машине реализовать задачу из методички, опубликованной [здесь](https://github.com/eugeneai/bash-essentials-ru-handbok/raw/master/bash-ru.pdf)
 
 Задача выполнена для виртуальной машины VirtualBox на установленной [Ubuntu 22.04.2](https://releases.ubuntu.com/jammy/)
@@ -24,6 +24,8 @@ sudo apt install imagemagick
 
 Для решения данной задачи потребуется написать скрипт на языке `bash`, который будет использовать утилиту `convert` из пакета `ImageMagick` для преобразования файлов формата `.jpg` в формат `JPEG2000`.
 
+<br>
+
 ```bash
 #!/bin/bash
 
@@ -46,7 +48,7 @@ for file in *.jpg; do
     fi
 done
 ```
-
+<br>
 
 Для корректной работы скрипта нужно заменить `/путь/к/директории` на фактический путь к директории, в которой находятся файлы `.jpg`.
 
