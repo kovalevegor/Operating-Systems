@@ -1,5 +1,5 @@
 # <p aligh="center"> Operating-Systems | Лабораторная 3a | Реализация скрипта bash</p>
-# <p align="center">Operating-Systems | Лабораторная 3a | Реализация скрипта bash </p>
+# <p align="center"> Operating-Systems | Лабораторная 3a | Реализация скрипта bash</p>
 
 В установленной виртуальной машине реализовать задачу из методички, опубликованной [здесь](https://github.com/eugeneai/bash-essentials-ru-handbok/raw/master/bash-ru.pdf)
 
