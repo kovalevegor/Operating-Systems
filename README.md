@@ -111,11 +111,33 @@ VBoxManage storageattach <имя__виртуальной_машины> --storage
 <br>
 
 
+1. Запустить виртуальную машину Ubuntu и дождаться загрузки системы.
 
+2. Открыть терминал. Для этого можно воспользоваться горячими клавишами `Ctrl+Alt+T`.
 
+3. В терминале выполните команду `sudo parted -l`. Она позволит узнать список доступных дисков и их разделов.
 
+<br>
 
+```mathematica
+Model: Virtual disk (vda)
+Disk /dev/vda: 50.0GB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags:
 
+Number  Start   End     Size    Type     File system  Flags
+ 1      1049kB  512MB   511MB   primary  ext4         boot
+ 2      513MB   50.0GB  49.5GB  primary  ext4
+```
+
+<br>
+
+В данном месте `/dev/vda` является исследуемым диском.
+
+4. Выбрать диск, который нужно разбить и отформатировать. Например, если нужно разбить `/dev/vda`, выполнить команду `sudo parted /dev/vda`.
+
+5. Ввести команду `mklabel gpt`, чтобы создать новую таблицу разделов `GPT (GUID Partition Table)` на диске. Подтвердить действие, если будет запрошено.
 
 
 
