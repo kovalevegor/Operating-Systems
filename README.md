@@ -348,27 +348,72 @@ ping google.com
 
 <br>
 
+---
+
+### <p align="center">Настройка системы</p>
+
+<br>
 
 
+1. Настройка файловой системы и точек монтирования:
+
++ Просмотр доступных дисков и разделов:
 
 
+<br>
+
+```bash
+sudo fdisk -l
+
+Disk /dev/sda: 500GB
+Device       Boot     Start       End    Sectors   Size  Type
+/dev/sda1    *         2048    999423    997376   487M  Linux filesystem
+/dev/sda2           1001470  976771071  975769602  465.2G  Linux filesystem
+```
+
+<br>
+
++ Форматирование раздела (например, ext4):
 
 
+<br>
+
+```bash
+sudo mkfs.ext4 /dev/sda1
+```
+
+<br>
+
++ Создание точки монтирования:
 
 
+<br>
 
+```bash
+sudo mkdir /mnt/mydisk
+```
 
+<br>
 
++ Добавление записи в файл /etc/fstab для автоматического монтирования:
 
+<br>
 
+```bash
+sudo nano /etc/fstab
+```
 
+<br>
 
+Внутри файла добавить строку в следующем формате:
 
+<br>
 
+```bash
+/dev/sda1    /mnt/mydisk    ext4    defaults    0    2
+```
 
-
-
-
+<br>
 
 
 
