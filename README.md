@@ -415,6 +415,108 @@ sudo nano /etc/fstab
 
 <br>
 
+3. Установка и настройка загрузчика:
+
++ Установка GRUB:
+
+<br>
+
+```bash
+sudo apt install grub2
+```
+
+<br>
+
++ Настройка GRUB:
+
+<br>
+
+```bash
+sudo nano /etc/default/grub
+```
+
+<br>
+
+Внутри файла настроить параметры загрузчика, такие как `GRUB_TIMEOUT` (время ожидания загрузки) и `GRUB_DEFAULT` (по умолчанию выбранное ядро).
+
++ Установка systemd-boot:
+
+<br>
+
+```bash
+sudo apt install systemd-boot
+```
+
+<br>
+
++ Настройка systemd-boot:
+
+<br>
+
+```bash
+sudo nano /boot/efi/loader/loader.conf
+```
+
+<br>
+
+Внутри файла настроить параметры загрузчика
+
+<br>
+
+```arduino
+default    ubuntu
+timeout    5
+```
+
+<br>
+
+Создайте файл конфигурации для загрузки ОС
+
+<br>
+
+```bash
+sudo nano /boot/efi/loader/entries/ubuntu.conf
+```
+
+<br>
+
+Внутри файла лобавить конфигурацию для загрузки ОС
+
+<br>
+
+```bash
+title   Ubuntu
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options root=/dev/sda2 rw
+```
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
