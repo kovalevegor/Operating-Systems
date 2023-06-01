@@ -139,15 +139,41 @@ Number  Start   End     Size    Type     File system  Flags
 
 5. Ввести команду `mklabel gpt`, чтобы создать новую таблицу разделов `GPT (GUID Partition Table)` на диске. Подтвердить действие, если будет запрошено.
 
+<br>
 
+```vbnet
+(parted) mklabel gpt
+Warning: The existing disk label on /dev/vda will be destroyed and all data on this disk will be lost. Do you want to continue?
+Yes/No? Yes
+```
 
+<br>
 
+6. Теперь можно создавать разделы на диске. Например, для создания раздела размером `20 ГБ` выполнить команду `mkpart primary ext4 0GB 20GB`. Заменить `ext4` на желаемую файловую систему раздела.
 
+<br>
 
+```scss
+(parted) mkpart primary ext4 0GB 20GB
+```
 
+<br>
 
+7. Повторить шаг 6 для создания всех необходимых разделов.
 
+8. После создания разделов ввесть команду `quit`, чтобы выйти из `parted`.
 
+9. Теперь нужно отформатировать созданные разделы. Например, для форматирования первого раздела выполните команду `sudo mkfs.ext4 /dev/vda1`.
+
+<br>
+
+```bash
+sudo mkfs.ext4 /dev/vda1
+```
+
+10. Повторить шаг 9 для всех созданных разделов.
+
+Теперь диск разбит и готов к установке операционной системы или использованию в качестве хранилища данных.
 
 
 
