@@ -104,9 +104,10 @@ VBoxManage storageattach <имя__виртуальной_машины> --storage
 ---
 <br>
 
-## <p align="center">3. Установка различных дистрибутивов Linux</P>
+## <p align="center">3. Установка различных дистрибутивов Linux</p>
 <br>
-### <p align="center">Форматирование и разбиение диска</P>
+
+### <p align="center">Форматирование и разбиение диска</p>
 <br>
 
 
