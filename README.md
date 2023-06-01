@@ -241,9 +241,132 @@ apt install <пакет1> <пакет2> ...
 
 <br>
 
-Заменить <пакет1>, <пакет2> и т.д. на названия пакетов, которые вы хотите установить.
+Заменить `<пакет1>`, `<пакет2>` и т.д. на названия пакетов, которые нужно установить.
 
 Пример команды:
+
+<br>
+
+```
+apt install openssh-server vim net-tools
+```
+
+<br>
+
+В этом примере устанавливаются пакеты `openssh-server`, `vim` и `net-tools`.
+
+
+5. Необходимые настройки системы
+
++ Настройка сети
+
+Назначение статического IP-адреса:
+
+<br>
+
+```bash
+sudo nano /etc/network/interfaces
+```
+
+<br>
+
+Внутри файла добавить следующие строки, заменить `<interface>` на имя сетевого интерфейса (например, eth0) и `<ip_address>` на желаемый статический IP-адрес:
+
+<br>
+
+```csharp
+auto <interface>
+iface <interface> inet static
+address <ip_address>
+netmask <subnet_mask>
+gateway <default_gateway>
+dns-nameservers <dns_server_ip>
+```
+
+<br>
+
+Сохранить изменения и перезапустить сетевой интерфейс командой:
+
+<br>
+
+```csharp
+sudo ifdown <interface> && sudo ifup <interface>
+```
+
+<br>
+
+Настройка DHCP:
+
+<br>
+
+```bash
+sudo nano /etc/network/interfaces
+```
+
+<br>
+
+Внутри файла найти строку `iface <interface> inet dhcp (где <interface>` - имя сетевого интерфейса) и убедиться, что она присутствует. Сохранить файл и перезагрузить сетевой интерфейс командой:
+
+<br>
+
+```csharp
+sudo ifdown <interface> && sudo ifup <interface>
+```
+
+<br>
+
+Настройка DNS-серверов:
+
+<br>
+
+```bash
+sudo nano /etc/resolv.conf
+```
+
+<br>
+
+Внутри файла добавить строки с IP-адресами DNS-серверов, разделяя их пробелами или переносом строки. Например:
+
+<br>
+
+```
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+
+<br>
+
+Сохранить изменени
+
+Проверка сетевого подключения:
+
+<br>
+
+```
+ping google.com
+```
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
